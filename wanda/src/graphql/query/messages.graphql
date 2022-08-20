@@ -1,0 +1,6 @@
+query Messages{
+  messages {
+    id
+    message
+  }
+}

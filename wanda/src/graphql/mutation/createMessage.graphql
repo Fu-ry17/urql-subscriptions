@@ -1,0 +1,6 @@
+mutation CreateMessage($message: String!){
+  createMessage(message: $message) {
+    id
+    message
+  }
+}
