@@ -1,5 +1,6 @@
-import { Arg, Field, Mutation, ObjectType, PubSub, PubSubEngine, Query, Resolver, Root, Subscription } from "type-graphql";
+import { Arg, Ctx, Field, Mutation, ObjectType, PubSub, PubSubEngine, Query, Resolver, Root, Subscription } from "type-graphql";
 import { randomUUID } from 'crypto'
+import { Request } from "express"
 
 @ObjectType()
 class Messages{
@@ -12,6 +13,10 @@ class Messages{
 
 const topics = {
     NEW_MESSAGE: "NEW_MESSAGE"
+}
+ 
+type MyContext = {
+   req: Request
 }
 
 const messageArr: Messages[] = [ { id: randomUUID(), message: "so cool"}]
@@ -32,7 +37,8 @@ export class MessageResolver{
     }
 
     @Subscription(()=> Messages, { topics: topics.NEW_MESSAGE })
-    newMessage(@Root() message: Messages){
+    newMessage(@Root() message: Messages, @Ctx() ctx: MyContext){
         return message
     }
+
 }

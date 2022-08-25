@@ -14,6 +14,7 @@ const wsClient = createWSClient({
     url: 'ws://localhost:4000/graphql',
     webSocketImpl: WebSocket
 });
+
 const client = createClient({
   url: 'http://localhost:4000/graphql',
   exchanges: [

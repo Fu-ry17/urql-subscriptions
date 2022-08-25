@@ -26,7 +26,9 @@ const main = async () => {
        path: '/graphql'
     })
 
-    const serverCleanup = useServer({ schema }, wsServer);
+    const serverCleanup = useServer(
+       { schema },
+      wsServer);
 
     // apollo-server
     const apolloServer = new ApolloServer({
